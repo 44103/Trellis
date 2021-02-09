@@ -1,0 +1,1 @@
+docker-compose run --rm app sh -c 'npx create-react-app trellis --template typescript'
