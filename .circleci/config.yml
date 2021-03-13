@@ -1,0 +1,58 @@
+version: 2.1
+
+executors:
+  frontend-executor:
+    docker:
+      - image: circleci/node:14.16-stretch-browsers
+
+references:
+  cache_key: &cache_key v1-dependencies-{{ checksum "app/trellis/yarn.lock" }}
+  save_node_modules: &save_node_modules
+    save_cache:
+      paths:
+        - "app/trellis/node_modules"
+      key: *cache_key
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      keys:
+        - *cache_key
+        - v1-dependencies-
+
+workflows:
+  version: 2
+  all-check:
+    jobs:
+      - package-install-and-init
+      - build:
+          requires:
+            - package-install-and-init
+      - test:
+          requires:
+            - package-install-and-init
+
+jobs:
+  package-install-and-init:
+    executor: frontend-executor
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run: yarn install
+      - *save_node_modules
+      - run: yarn init
+  build:
+    executor: frontend-executor
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - *restore_node_modules
+      - *save_node_modules
+      - run: yarn build
+  test:
+    executor: frontend-executor
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - *restore_node_modules
+      - *save_node_modules
+      - run: yarn test

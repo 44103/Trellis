@@ -9,6 +9,6 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - ./app:/usr/src/app
-    command: sh -c "cd trellis && yarn start"
+    command: sh -c "cd trellis && yarn && yarn start"
     ports:
       - "3000:3000"
