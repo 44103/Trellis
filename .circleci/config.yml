@@ -26,9 +26,9 @@ workflows:
       - build:
           requires:
             - package-install-and-init
-      - test:
-          requires:
-            - package-install-and-init
+      # - test:
+      #     requires:
+      #       - package-install-and-init
 
 jobs:
   package-install-and-init:
