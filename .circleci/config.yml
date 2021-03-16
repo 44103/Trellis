@@ -16,7 +16,6 @@ references:
     restore_cache:
       keys:
         - *cache_key
-        - v1-dependencies-
 
 workflows:
   version: 2
