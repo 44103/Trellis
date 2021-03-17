@@ -6,7 +6,7 @@ executors:
       - image: circleci/node:14.16-stretch-browsers
 
 references:
-  cache_key: &cache_key v1-dependencies-{{ checksum "app/trellis/yarn.lock" }}
+  cache_key: &cache_key v2-dependencies-{{ checksum "app/trellis/yarn.lock" }}
   save_node_modules: &save_node_modules
     save_cache:
       paths:
