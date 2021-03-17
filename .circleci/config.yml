@@ -10,7 +10,7 @@ references:
   save_node_modules: &save_node_modules
     save_cache:
       paths:
-        - "project/app/trellis/node_modules"
+        - "app/trellis/node_modules"
       key: *cache_key
   restore_node_modules: &restore_node_modules
     restore_cache:
