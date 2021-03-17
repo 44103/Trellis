@@ -36,7 +36,7 @@ jobs:
       - checkout
       - *restore_node_modules
       - run:
-          working_directory: project/app/trellis
+          working_directory: app/trellis
           command: yarn install
       - *save_node_modules
   build:
@@ -46,7 +46,7 @@ jobs:
       - *restore_node_modules
       - *save_node_modules
       - run:
-          working_directory: project/app/trellis
+          working_directory: app/trellis
           command: yarn build
   test:
     executor: frontend-executor
@@ -55,5 +55,5 @@ jobs:
       - *restore_node_modules
       - *save_node_modules
       - run:
-          working_directory: project/app/trellis
+          working_directory: app/trellis
           command: yarn test
