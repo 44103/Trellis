@@ -32,7 +32,6 @@ workflows:
 jobs:
   package-install:
     executor: frontend-executor
-    working_directory: ~/repo
     steps:
       - checkout
       - *restore_node_modules
@@ -40,7 +39,6 @@ jobs:
       - *save_node_modules
   build:
     executor: frontend-executor
-    working_directory: ~/repo
     steps:
       - checkout
       - *restore_node_modules
@@ -48,7 +46,6 @@ jobs:
       - run: yarn build
   test:
     executor: frontend-executor
-    working_directory: ~/repo
     steps:
       - checkout
       - *restore_node_modules
