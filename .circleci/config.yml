@@ -10,7 +10,7 @@ references:
   save_node_modules: &save_node_modules
     save_cache:
       paths:
-        - "app/trellis/node_modules"
+        - "project/app/trellis/node_modules"
       key: *cache_key
   restore_node_modules: &restore_node_modules
     restore_cache:
@@ -35,7 +35,9 @@ jobs:
     steps:
       - checkout
       - *restore_node_modules
-      - run: yarn install
+      - run:
+          working_directory: project/app/trellis
+          command: yarn install
       - *save_node_modules
   build:
     executor: frontend-executor
@@ -43,11 +45,15 @@ jobs:
       - checkout
       - *restore_node_modules
       - *save_node_modules
-      - run: yarn build
+      - run:
+          working_directory: project/app/trellis
+          command: yarn build
   test:
     executor: frontend-executor
     steps:
       - checkout
       - *restore_node_modules
       - *save_node_modules
-      - run: yarn test
+      - run:
+          working_directory: project/app/trellis
+          command: yarn test
