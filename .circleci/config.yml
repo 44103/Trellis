@@ -16,6 +16,7 @@ references:
     restore_cache:
       keys:
         - *cache_key
+  app_dir: &app_dir app/trellis
 
 workflows:
   version: 2
@@ -36,7 +37,7 @@ jobs:
       - checkout
       - *restore_node_modules
       - run:
-          working_directory: app/trellis
+          working_directory: *app_dir
           command: yarn install
       - *save_node_modules
   build:
@@ -46,7 +47,7 @@ jobs:
       - *restore_node_modules
       - *save_node_modules
       - run:
-          working_directory: app/trellis
+          working_directory: *app_dir
           command: yarn build
   test:
     executor: frontend-executor
@@ -55,5 +56,5 @@ jobs:
       - *restore_node_modules
       - *save_node_modules
       - run:
-          working_directory: app/trellis
+          working_directory: *app_dir
           command: yarn test
