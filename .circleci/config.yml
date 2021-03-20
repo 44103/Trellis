@@ -43,12 +43,19 @@ jobs:
   build:
     executor: frontend-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "db:cc:cf:6b:8a:51:e5:96:50:02:02:68:6d:18:04:31"
       - checkout
       - *restore_node_modules
       - *save_node_modules
       - run:
           working_directory: *app_dir
-          command: yarn build
+          command: |
+            git config user.email ""
+            git config user.name ""
+
+            yarn build
   test:
     executor: frontend-executor
     steps:
