@@ -23,7 +23,13 @@ workflows:
   all-check:
     jobs:
       - package-install
+
       - build:
+          context: GitHub
+          filters:
+            branches:
+              ignore:
+                - gh-pages
           requires:
             - package-install
       # - test:
@@ -50,9 +56,21 @@ jobs:
       - *restore_node_modules
       - *save_node_modules
       - run:
+          name: Build React App
+          working_directory: *app_dir
+          command:  yarn build
+      - run:
+          name: Setting git config
           working_directory: *app_dir
           command: |
-            yarn build
+            git config user.email ${GITHUB_EMAIL}
+            git config user.name ${GITHUB_NAME}
+      - run:
+          name: Deploy React App
+          working_directory: *app_dir
+          command: |
+            yarn add --dev gh-pages
+            yarn gh-pages -d build
   test:
     executor: frontend-executor
     steps:
