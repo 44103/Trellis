@@ -58,7 +58,9 @@ jobs:
       - run:
           name: Build React App
           working_directory: *app_dir
-          command:  yarn build
+          command:  |
+            sed -i -e "s/GITHUB_NAME/${GITHUB_NAME}/g" package.json
+            yarn build
       - run:
           name: Setting git config
           working_directory: *app_dir
