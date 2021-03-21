@@ -45,16 +45,13 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "db:cc:cf:6b:8a:51:e5:96:50:02:02:68:6d:18:04:31"
+            - "1e:c0:02:20:c9:f4:0b:10:30:8b:ae:c3:74:ce:89:1a"
       - checkout
       - *restore_node_modules
       - *save_node_modules
       - run:
           working_directory: *app_dir
           command: |
-            git config user.email ""
-            git config user.name ""
-
             yarn build
   test:
     executor: frontend-executor
