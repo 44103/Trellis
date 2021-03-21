@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "./static/css/main.6dea0f05.chunk.css",
-    "main.js": "./static/js/main.4f88cc4f.chunk.js",
-    "main.js.map": "./static/js/main.4f88cc4f.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.51183d2d.js",
-    "runtime-main.js.map": "./static/js/runtime-main.51183d2d.js.map",
-    "static/js/2.191b7ded.chunk.js": "./static/js/2.191b7ded.chunk.js",
-    "static/js/2.191b7ded.chunk.js.map": "./static/js/2.191b7ded.chunk.js.map",
-    "static/js/3.201a9698.chunk.js": "./static/js/3.201a9698.chunk.js",
-    "static/js/3.201a9698.chunk.js.map": "./static/js/3.201a9698.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "./static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.191b7ded.chunk.js.LICENSE.txt": "./static/js/2.191b7ded.chunk.js.LICENSE.txt"
+    "main.css": "/Trellis/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/Trellis/static/js/main.4f88cc4f.chunk.js",
+    "main.js.map": "/Trellis/static/js/main.4f88cc4f.chunk.js.map",
+    "runtime-main.js": "/Trellis/static/js/runtime-main.aac432a7.js",
+    "runtime-main.js.map": "/Trellis/static/js/runtime-main.aac432a7.js.map",
+    "static/js/2.191b7ded.chunk.js": "/Trellis/static/js/2.191b7ded.chunk.js",
+    "static/js/2.191b7ded.chunk.js.map": "/Trellis/static/js/2.191b7ded.chunk.js.map",
+    "static/js/3.201a9698.chunk.js": "/Trellis/static/js/3.201a9698.chunk.js",
+    "static/js/3.201a9698.chunk.js.map": "/Trellis/static/js/3.201a9698.chunk.js.map",
+    "index.html": "/Trellis/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/Trellis/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.191b7ded.chunk.js.LICENSE.txt": "/Trellis/static/js/2.191b7ded.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.51183d2d.js",
+    "static/js/runtime-main.aac432a7.js",
     "static/js/2.191b7ded.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.4f88cc4f.chunk.js"
