@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Grid, Paper, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
@@ -68,8 +67,7 @@ const EditForm = (props: { create: Function }) => {
               className={classes.button}
               variant="contained"
               color="secondary"
-              type="submit"
-            >
+              type="submit">
               Create
             </Button>
           </Grid>
