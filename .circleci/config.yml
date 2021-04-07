@@ -1,0 +1,84 @@
+version: 2.1
+
+executors:
+  frontend-executor:
+    docker:
+      - image: circleci/node:14.16-stretch-browsers
+
+references:
+  cache_key: &cache_key v2-dependencies-{{ checksum "app/trellis/yarn.lock" }}
+  save_node_modules: &save_node_modules
+    save_cache:
+      paths:
+        - "app/trellis/node_modules"
+      key: *cache_key
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      keys:
+        - *cache_key
+  app_dir: &app_dir app/trellis
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - package-install
+
+      - build:
+          context: GitHub
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - package-install
+      # - test:
+      #     requires:
+      #       - package-install
+
+jobs:
+  package-install:
+    executor: frontend-executor
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          working_directory: *app_dir
+          command: yarn install
+      - *save_node_modules
+  build:
+    executor: frontend-executor
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "1e:c0:02:20:c9:f4:0b:10:30:8b:ae:c3:74:ce:89:1a"
+      - checkout
+      - *restore_node_modules
+      - *save_node_modules
+      - run:
+          name: Build React App
+          working_directory: *app_dir
+          command:  |
+            sed -i -e "s/GITHUB_NAME/${GITHUB_NAME}/g" package.json
+            yarn build
+      - run:
+          name: Setting git config
+          working_directory: *app_dir
+          command: |
+            git config user.email ${GITHUB_EMAIL}
+            git config user.name ${GITHUB_NAME}
+      - run:
+          name: Deploy React App
+          working_directory: *app_dir
+          command: |
+            yarn add --dev gh-pages
+            yarn gh-pages -d build
+  test:
+    executor: frontend-executor
+    steps:
+      - checkout
+      - *restore_node_modules
+      - *save_node_modules
+      - run:
+          working_directory: *app_dir
+          command: yarn test

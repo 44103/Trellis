@@ -1,17 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Navigate from './Navigate';
+import FormContainer from './FormContainer';
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2770c2',
+    }
+  }
+})
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Navigate />
+      <FormContainer />
+    </ThemeProvider>
   );
 }
 
