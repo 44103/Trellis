@@ -20,7 +20,7 @@ references:
 
 workflows:
   version: 2
-  all-check:
+  main:
     jobs:
       - package-install
 
@@ -28,8 +28,8 @@ workflows:
           context: GitHub
           filters:
             branches:
-              ignore:
-                - gh-pages
+              only:
+                - master
           requires:
             - package-install
       # - test:
